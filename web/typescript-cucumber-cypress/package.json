@@ -1,0 +1,43 @@
+{
+  "name": "typescript-cucumber-cypress",
+  "version": "1.1.0",
+  "description": "E2E Cypress",
+  "author": "Flavio Romero",
+  "license": "ISC",
+  "main": "",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "report:multiple": "node cypress/e2e/utility/MultipleReports.ts",
+    "report:simple": "node cypress/e2e/utility/SimpleReports.ts"
+  },
+  "dependencies": {
+    "cypress": "^13.3.1",
+    "typescript": "latest",
+    "@badeball/cypress-cucumber-preprocessor": "^18.0.6",
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "multiple-cucumber-html-reporter": "latest",
+    "cucumber-html-reporter": "latest"
+  },
+  "cypress-cucumber-preprocessor": {
+    "filterSpecs": true,
+    "omitFiltered": true,
+    "stepDefinitions": [
+      "[filepath]/**/*.{js,ts}",
+      "[filepath].{js,ts}",
+      "cypress/e2e/steps/**/*.{js,ts}"
+    ],
+    "messages": {
+      "enabled": true,
+      "output": "cypress/target/cucumber/cucumber-messages.ndjson"
+    },
+    "json": {
+      "enabled": true,
+      "output": "cypress/target/cucumber/cucumber-report.json"
+    },
+    "html": {
+      "enabled": true,
+      "output": "cypress/target/cucumber/cucumber-report.html"
+    }
+  }
+}
